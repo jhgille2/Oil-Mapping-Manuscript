@@ -13,10 +13,9 @@ library(reshape2)
 library(gt)
 library(kableExtra)
 
-setwd("C:\\Users\\Jay\\Desktop\\Work\\Projects\\Oil MP Paper\\Mapping\\Phenotype Data")
 
 # Set root directory
-Rdir <- getwd()
+Rdir <- paste0(here(), "/Data/RawData")
 
 
 Combined.201 <- read.csv(paste0(Rdir, "/Pop201Combined.csv"))
@@ -55,7 +54,7 @@ AllData <- AllData %>% rename(SDWT = Hundred.Seed.Weight,
                               Environment = Loc,
                               Population = Pop)
 
-write.csv(AllData, "C:/Users/Jay/Desktop/New OilMP Docs/Manuscript/Data/AllPhenotypeData.csv", row.names = FALSE)
+write.csv(AllData, paste0(here(), "/Data/AllPhenotypeData.csv"), row.names = FALSE)
 
 # Split the data based on population
 AllData.split <- split(AllData, AllData$Population)
@@ -159,8 +158,8 @@ SummaryGT.202 <- SummaryData.202  %>%
                locations = cells_column_spanners("RILs"))
 
 # Save each table as a .rtf file so that it can be added to a word document
-gtsave(SummaryGT.201, "C:\\Users\\Jay\\Desktop\\New OilMP Docs\\Manuscript\\Tables\\Pop201PhenoSummary.rtf")
-gtsave(SummaryGT.202, "C:\\Users\\Jay\\Desktop\\New OilMP Docs\\Manuscript\\Tables\\Pop202PhenoSummary.rtf")
+gtsave(SummaryGT.201, paste0(here(), "\\Tables\\Pop201PhenoSummary.rtf"))
+gtsave(SummaryGT.202, paste0(here(), "\\Tables\\Pop202PhenoSummary.rtf"))
 
 
 

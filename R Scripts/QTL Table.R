@@ -15,11 +15,9 @@ library(kableExtra)
 library(readxl)
 library(skimr)
 
-# The working directory for this script
-setwd("C:\\Users\\Jay\\Desktop\\New OilMP Docs\\Manuscript\\Data")
 
 # Read the full QTL Table
-AllQTL <- read.csv("AllQTL.csv")
+AllQTL <- read.csv(paste0(here(), "/Data/AllQTL.csv"))
 
 # Fix the Consensus positions
 AllQTL$ConsensusL_New <- NA
@@ -82,7 +80,7 @@ AllQTL_table_gt <- AllQTL_table  %>%
                locations = cells_column_labels(columns = vars(`Consensus Interval`)))
 
 # Save each table as a .rtf file so that it can be added to a word document
-gtsave(AllQTL_table_gt, "C:\\Users\\Jay\\Desktop\\New OilMP Docs\\Manuscript\\Tables\\QTLSummary.rtf")
+gtsave(AllQTL_table_gt, paste0(here(), "\\Tables\\QTLSummary.rtf"))
 
 
 ## Section: Summary information
