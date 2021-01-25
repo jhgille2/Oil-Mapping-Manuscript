@@ -60,6 +60,7 @@ AllQTL_table$LOD <- round(AllQTL_table$LOD, 2)
 
 AllQTL_table_gt <- AllQTL_table  %>%
   gt() %>%
+  tab_header(title = "Table 3: Quantitative trait loci (QTL) detected for seed traits in the soybean recombinant inbred line populations, Population 201 and Population 202 which were grown in multiple locations in North Carolina.") %>%
   tab_footnote(footnote = "The environment from which the phenotype measurements come. Ply = Plymouth, Cla = Clayton. Cas = Caswell.",
                locations = cells_column_labels(columns = vars(Environment))) %>% 
   tab_footnote(footnote = "The phenotype. SDWT = hundred seed weight, Oil = oil content measured on a dry basis, Protein = protein content measured on a dry basis.",

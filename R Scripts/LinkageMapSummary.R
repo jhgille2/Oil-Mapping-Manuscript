@@ -9,6 +9,7 @@
 library(qtl)
 library(tidyverse)
 library(here)
+library(gt)
 
 # Chromosome to LG conversion
 ChrtoLG <- read.csv("https://raw.githubusercontent.com/jhgille2/SoybaseData/master/SoybaseLGAssignments.csv", stringsAsFactors = FALSE)
@@ -83,3 +84,34 @@ load(paste0(here(), "/Data/AllCrosses.RData"))
 # Summary tables for each map
 Pop201MapSummary <- MapSummary(AllCrosses[[1]])
 Pop202MapSummary <- MapSummary(AllCrosses[[8]])
+
+
+# Formatting and export
+SummaryMapGT.201 <- Pop201MapSummary %>%
+  gt() %>%
+  tab_header(title = "Table S1: Summary data for the linkage map created for soybean oil mapping population 201 using 421 SNPs genotyped using the Illumina Infinium SoySNP6K BeadChip.") %>%
+  tab_footnote(footnote = "Chromosme number and the corresponding linkage group name for each linkage group in the linkage map.",
+               locations = cells_column_labels(columns = vars(Chromosome))) %>% 
+  tab_footnote(footnote = "The number of SNP markers which were positioned on each linkage group.",
+               locations = cells_column_labels(columns = vars(`Number of Markers`))) %>%
+  tab_footnote(footnote = "The size of each linkage group in centimorgans. Genetic distances were calculated using Kosambi's function.",
+               locations = cells_column_labels(columns = vars(`Chromosome size (cM)`))) %>%
+  tab_footnote(footnote = "The average spacing betweebneach marker of a linkage group in centimorgans.",
+               locations = cells_column_labels(columns = vars(`Average marker spacing`)))
+
+SummaryMapGT.202 <- Pop202MapSummary %>%
+  gt() %>%
+  tab_header(title = "Table S2: Summary data for the linkage map created for soybean oil mapping population 202 using 416 SNPs genotyped using the Illumina Infinium SoySNP6K BeadChip.") %>%
+  tab_footnote(footnote = "Chromosme number and the corresponding linkage group name for each linkage group in the linkage map.",
+               locations = cells_column_labels(columns = vars(Chromosome))) %>% 
+  tab_footnote(footnote = "The number of SNP markers which were positioned on each linkage group.",
+               locations = cells_column_labels(columns = vars(`Number of Markers`))) %>%
+  tab_footnote(footnote = "The size of each linkage group in centimorgans. Genetic distances were calculated using Kosambi's function.",
+               locations = cells_column_labels(columns = vars(`Chromosome size (cM)`))) %>%
+  tab_footnote(footnote = "The average spacing between each marker of a linkage group in centimorgans.",
+               locations = cells_column_labels(columns = vars(`Average marker spacing`)))
+
+
+# Save each table as a .rtf file so that it can be added to a word document
+gtsave(SummaryMapGT.201, paste0(here(), "\\Tables\\Pop201LinkageMapSummary.rtf"))
+gtsave(SummaryMapGT.202, paste0(here(), "\\Tables\\Pop202LinkageMapSummary.rtf"))

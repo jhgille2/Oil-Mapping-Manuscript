@@ -127,6 +127,7 @@ SummaryData.202 <- left_join(Parents.202.Summary, RILs.202.Summary)
 SummaryGT.201 <- SummaryData.201 %>%
   select(-one_of("Population")) %>%
   gt() %>%
+  tab_header(title = "Table 1: Phenotype trait values for the parental inbreds LMN09-119 and N09-09 and the derived RILs of mapping population 201 evaluated in three environments and averaged across environments. Values represent the means of parents and RILs and the minimum maximum, and standard deviation of the RILs.") %>%
   tab_spanner(label = "Parents",
               columns = vars(`LMN09-119`, `N09-09`)) %>%
   tab_spanner(label = "RILs",
@@ -144,6 +145,7 @@ SummaryGT.201 <- SummaryData.201 %>%
 SummaryGT.202 <- SummaryData.202  %>%
   select(-one_of("Population")) %>% 
   gt() %>%
+  tab_header(title = "Table 2: Phenotype trait values for the parental inbreds LMN09-19 and N13-47 and the derived RILs of mapping population 202 evaluated in three environments and averaged across environments. Values represent the means of parents and RILs and the minimum maximum, and standard deviation of the RILs.") %>%
   tab_spanner(label = "Parents",
               columns = vars(`LMN09-19`, `N13-47`)) %>%
   tab_spanner(label = "RILs",
